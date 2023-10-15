@@ -22,3 +22,30 @@ fetch("http://localhost:3000/films/1")
 // accessing ul#films
 const films= document.getElementById("films")
 // to display all films
+fetch("http://localhost:3000/films")
+.then((res)=>res.json())
+.then((data)=>{
+    console.log(data)
+   data.forEach(element => {
+    for (const key in element) {
+        const li=document.createElement("li")
+        li.innerHTML=""
+        li.innerText= key + ": " + element[key]
+        films.appendChild(li)  
+        
+        
+        }
+        const tiko=document.createElement("li")
+        tiko.innerHTML=""
+        tiko.setAttribute("class","ticket")
+        tiko.innerText= "Available tickets: " + (data.capacity - data.tickets_sold)
+        films.appendChild(tiko)
+        const btn =document.createElement("button")
+        btn.innerText="Buy Ticket"
+        films.appendChild(btn)
+        btn.addEventListener("click",(e)=>{
+            tiko.innerText= "Available tickets: " + (element.capacity - element.tickets_sold-1) 
+        })
+   });
+   
+})
