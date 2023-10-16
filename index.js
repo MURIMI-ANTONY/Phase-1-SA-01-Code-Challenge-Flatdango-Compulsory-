@@ -34,18 +34,26 @@ fetch("http://localhost:3000/films")
         films.appendChild(li)  
         
         
+        
         }
+       
+
+        
         const tiko=document.createElement("li")
         tiko.innerHTML=""
         tiko.setAttribute("class","ticket")
-        tiko.innerText= "Available tickets: " + (data.capacity - data.tickets_sold)
+        tiko.innerText= "Available tickets: " + (element.capacity - element.tickets_sold)
         films.appendChild(tiko)
+
         const btn =document.createElement("button")
         btn.innerText="Buy Ticket"
         films.appendChild(btn)
-        btn.addEventListener("click",(e)=>{
-            tiko.innerText= "Available tickets: " + (element.capacity - element.tickets_sold-1) 
-        })
+        function event(){
+            tiko.innerText= "Available tickets: " + (element.capacity - element.tickets_sold -1)
+            console.log(tiko)
+        }
+        btn.addEventListener("click",event)
+        
    });
    
 })
